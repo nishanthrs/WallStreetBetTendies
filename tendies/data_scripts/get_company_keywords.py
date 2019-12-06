@@ -8,6 +8,7 @@ def get_company_most_common_keywords_res(company_name, subreddit, number_keyword
     client = pymongo.MongoClient("mongodb://localhost:27017")
     wsb_mongo_db = client['wsb_tendies']
     post_keywords_collection = wsb_mongo_db['post_keywords']
+    comment_keywords_collection = wsb_mongo_db['comment_keywords']
     
     # find all correlating post_ids
     try:
@@ -60,16 +61,17 @@ def get_company_most_common_keywords_res(company_name, subreddit, number_keyword
     for subreddit in subreddit_category:
         dict_keyword[subreddit] = []
 
-    common_stop_keywords = ['stock', 'price']
+    common_stop_keywords = ['stock', 'price', 'market', 'earning', 'year', 'week', 'company']
     #import data into the dictionary 
     for keyword_record in keyword_count: 
         subred = keyword_record['subreddit']
         count =  keyword_record['total']
         keyword =  keyword_record['keyword']
-        if (len(dict_keyword[subred]) > number_keyword):
+        if (len(dict_keyword[subred]) >= number_keyword):
             continue
-        if keyword != company_ticker or keyword != company_name or keyword not in common_stop_keywords:
-            dict_keyword[subred].append({keyword: count})
+        if keyword != company_ticker and keyword != company_name and keyword not in common_stop_keywords:
+            # dict_keyword[subred].append({keyword: count})
+            dict_keyword[subred].append({'keyword': keyword, 'count': count})
 
     return dict_keyword
 
