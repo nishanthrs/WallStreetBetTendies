@@ -3,15 +3,14 @@ import datetime
 import json
 import psycopg2
 import requests
+import sys
 import urllib
 
+sys.path.append('..')
+import db_helpers
 
 def get_tick_data_from_db(stock_symbol, start_date, end_date):
-    conn = psycopg2.connect(
-        host="fa19-cs411-048.cs.illinois.edu",
-        database="wsb_tendies",
-        user="wsb_django_user",
-        password="411_wsb_tendies")
+    conn = db_helpers.connect_to_db()
     cur = conn.cursor()
 
     get_stock_tick_data_query = (

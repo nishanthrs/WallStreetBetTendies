@@ -4,15 +4,14 @@ import json
 import pymongo
 import psycopg2
 import requests
+import sys
+
+sys.path.append('..')
+import db_helpers
 
 
 def get_sentiment_count_res(company_name, subreddit):
-    conn = psycopg2.connect(
-        host="fa19-cs411-048.cs.illinois.edu",
-        database="wsb_tendies",
-        user="wsb_django_user",
-        password="411_wsb_tendies"
-    )
+    conn = db_helpers.connect_to_db()
     cur = conn.cursor()
 
     client = pymongo.MongoClient("mongodb://localhost:27017")

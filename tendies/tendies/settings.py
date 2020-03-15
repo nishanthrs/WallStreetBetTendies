@@ -25,7 +25,7 @@ SECRET_KEY = 'c%zxl10jpp8x1a2*rg7-n195nn^t7rcb1zb%b9vbbsp0(2d!ik'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '172.22.158.49']
+ALLOWED_HOSTS = ['127.0.0.1', '172.22.158.49', '10.0.0.46']
 
 
 # Application definition
@@ -83,14 +83,14 @@ DATABASES = {
         'NAME': 'wsb_tendies',
 		'USER': 'wsb_django_user',
 		'PASSWORD': '411_wsb_tendies',
-		'HOST': 'fa19-cs411-048.cs.illinois.edu'
+		'HOST': '10.0.0.46'
     },
 	'keywords': {
 		'ENGINE': 'djongo',
 		'NAME': 'wsb_tendies',
 		'USER': 'wsb_django_user',
 		'PASSWORD': '411_wsb_tendies',
-		'HOST': 'fa19-cs411-048.cs.illinois.edu'
+		'HOST': '10.0.0.46'
 	}
 }
 

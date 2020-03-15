@@ -12,8 +12,10 @@ Parameters that user can specify: stock symbol, time range, subreddit
 ## Setup:
 1. Sign in to VM (upload SSH public key to VM of local device if necessary).
 2. Install Postgres SQL on VM, start service, and add user with password.\
-https://docs.microsoft.com/en-us/azure/virtual-machines/linux/postgresql-install\
-https://www.a2hosting.com/kb/developer-corner/testing-and-development/creating-a-postgresql-installation-for-local-testing
+Installing Postgres on Azure: https://docs.microsoft.com/en-us/azure/virtual-machines/linux/postgresql-install\
+Installing Postgres: https://www.a2hosting.com/kb/developer-corner/testing-and-development/creating-a-postgresql-installation-for-local-testing\
+Creating Database and User: https://medium.com/coding-blocks/creating-user-database-and-adding-access-on-postgresql-8bfcd2f4a91e\
+Install Postgres on Ubuntu Systems: https://www.techiediaries.com/install-postgresql-ubuntu/
 3. Run below command to view Postgres data and config directory:\
 ```sudo -u postgres psql -c "SHOW data_directory";```
 4. Uncomment listen_address and port line in postgresql.conf. Update localhost to '*' and add 'host 0.0.0.0/0' to accept non-local connections.
@@ -23,8 +25,8 @@ https://www.a2hosting.com/kb/developer-corner/testing-and-development/creating-a
 ```python3 manage.py runserver <server_ip_addr>:8000```
 
 ## Open Jupyter notebook on remote server via local browser:
-1. Run ```ssh -L 8000:localhost:8888 user@ip_addr``` to connect to remote server.
-2. Then start jupyter notebook and navigate to locahost:8000. 
+1. Run ```ssh -L 8000:localhost:8888 user@ip_addr``` on client to connect to remote server.
+2. Then start jupyter notebook on remote server and navigate to locahost:8000. 
 
 ## Endpoints:
 1. Stock Tick Data endpoint: <br>

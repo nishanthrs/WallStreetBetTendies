@@ -4,16 +4,15 @@ import json
 import psycopg2
 import requests
 from string import printable
+import sys
 import urllib
+
+sys.path.append('..')
+import db_helpers
 
 
 def get_sentiment_popularity_correlation_res(query_filename, subreddit_name):
-    conn = psycopg2.connect(
-        host="fa19-cs411-048.cs.illinois.edu",
-        database="wsb_tendies",
-        user="wsb_django_user",
-        password="411_wsb_tendies"
-    )
+    conn = db_helpers.connect_to_db()
     cur = conn.cursor()
 
     with open(query_filename, 'r') as q:

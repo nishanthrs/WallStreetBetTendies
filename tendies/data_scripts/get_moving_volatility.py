@@ -4,16 +4,15 @@ import json
 import psycopg2
 import requests
 from string import printable
+import sys
 import urllib
+
+sys.path.append('..')
+import db_helpers
 
 
 def get_moving_volatility_res(stock_symbol, start_date, end_date):
-    conn = psycopg2.connect(
-        host="fa19-cs411-048.cs.illinois.edu",
-        database="wsb_tendies",
-        user="wsb_django_user",
-        password="411_wsb_tendies"
-    )
+    conn = db_helpers.connect_to_db()
     cur = conn.cursor()
 
     cur.callproc('calVolatility2', ['1999-11-01 00:00:00', '2001-12-07 00:00:00'])

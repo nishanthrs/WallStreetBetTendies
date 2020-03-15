@@ -3,20 +3,18 @@ import datetime
 import json
 import psycopg2
 import requests
+import sys
 import time
 import urllib
 
-
-def load_av_credentials():
-    with open('data_scripts/av_credentials.json') as f:
-        av_credentials = json.load(f)
-        av_api_key = av_credentials['api_key']
-    return av_api_key
-
+sys.path.append('..')
+import constants
+import db_helpers
 
 # TODO: Add error handling here in case of incorrect or missing stock symbol
 def load_tick_data(stock_symbols):
-    av_api_key = load_av_credentials()
+    av_credentials = load_credentials(constants.AV_CREDENTIALS)
+    av_api_key = av_credentials['api_key']
     symbols_tick_data = {}
 
     for symbol in stock_symbols:
@@ -40,12 +38,7 @@ def load_tick_data(stock_symbols):
 
 
 def upload_to_db(stock_tick_data):
-    conn = psycopg2.connect(
-        host="fa19-cs411-048.cs.illinois.edu",
-        database="wsb_tendies",
-        user="wsb_django_user",
-        password="411_wsb_tendies"
-    )
+    conn = db_helpers.connect_to_db()
     cur = conn.cursor()
 
     for stock in stock_tick_data:

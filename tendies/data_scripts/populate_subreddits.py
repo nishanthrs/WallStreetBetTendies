@@ -8,6 +8,8 @@ import requests
 import time
 import urllib
 
+import tendies.db_helpers
+
 # Load DB libraries
 import psycopg2
 from pymongo import MongoClient
@@ -16,12 +18,6 @@ from pymongo import MongoClient
 import spacy
 from textblob import TextBlob
 nlp = spacy.load("en_core_web_sm")
-
-# TODO:
-# 1. Figure out why uploading subreddit posts and comments is fucking failing. FUCKING BULLSHIT
-# 2. Get most frequent keywords and its respective counts and upload to MongoDB
-# 3. Compute sentiment of posts' titles and comments and add to insert query
-# 4. Write skeleton for URL endpoints (one for each SQL query) and email Alexi to write SQL queries
 
 
 def load_reddit_credentials():
@@ -208,12 +204,7 @@ reddit_auth = praw.Reddit(
     client_secret=reddit_creds['client_secret'],
     user_agent=reddit_creds['user_agent']
 )
-conn = psycopg2.connect(
-    host="fa19-cs411-048.cs.illinois.edu",
-    database="wsb_tendies",
-    user="wsb_django_user",
-    password="411_wsb_tendies"
-)
+conn = db_helpers.connect_to_db()
 client = MongoClient("mongodb://localhost:27017")
 wsb_mongo_db = client['wsb_tendies']
 post_keywords_collection = wsb_mongo_db['post_keywords']
