@@ -1,5 +1,6 @@
 import constants
 import json
+import psycopg2
 
 def load_db_credentials():
     with open(constants.DB_CREDENTIALS) as f:

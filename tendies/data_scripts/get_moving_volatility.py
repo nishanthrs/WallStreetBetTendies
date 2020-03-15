@@ -1,7 +1,6 @@
 import collections
 import datetime
 import json
-import psycopg2
 import requests
 from string import printable
 import sys
