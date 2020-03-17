@@ -22,12 +22,6 @@ import tendies.db_helpers as db_helpers
 from tendies.load_credentials import load_credentials
 
 
-def load_reddit_credentials():
-    with open('data_scripts/reddit_credentials.json') as f:
-        reddit_credentials = json.load(f)
-    return reddit_credentials
-
-
 def tokenize_and_clean_text(text):
     """
     Method that implements part of NLP pipeline of cleaning text:
@@ -171,7 +165,6 @@ def upload_comments(post, subreddit_name, cur, keywords_collection):
             print('ERROR with uploading comments\' data of subreddit {}: {}'.format(subreddit_name, str(error)))
             raise Exception(error)
 
-        # TODO: Upload keywords/entities (find using Spacy) and its counts to MongoDB post_keywords and comment_keywords collections
         comment_keywords = dict(get_most_common_keywords(comment.body))
         if '$' in comment_keywords:  # Causes issues when uploading to MongoDB
             del comment_keywords['$']
