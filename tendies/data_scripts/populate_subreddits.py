@@ -2,6 +2,7 @@ from collections import Counter
 import datetime
 import json
 import praw
+import psycopg2
 from string import punctuation
 import re
 import requests

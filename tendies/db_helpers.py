@@ -1,6 +1,8 @@
-import constants
 import json
 import psycopg2
+
+import tendies.constants as constants
+
 
 def load_db_credentials():
     with open(constants.DB_CREDENTIALS) as f:
