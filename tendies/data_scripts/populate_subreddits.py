@@ -3,22 +3,23 @@ import datetime
 import json
 import praw
 import psycopg2
+from pymongo import MongoClient
 from string import punctuation
 import re
 import requests
+import sys
 import time
 import urllib
-
-import tendies.db_helpers
-
-# Load DB libraries
-import psycopg2
-from pymongo import MongoClient
 
 # Load NLP dependencies
 import spacy
 from textblob import TextBlob
 nlp = spacy.load("en_core_web_sm")
+
+sys.path.append('..')
+import tendies.constants as constants
+import tendies.db_helpers as db_helpers
+from tendies.load_credentials import load_credentials
 
 
 def load_reddit_credentials():
@@ -199,7 +200,7 @@ def upload_subreddit_posts_and_comments(reddit, subreddit_name, conn, post_keywo
     cur.close()
 
 
-reddit_creds = load_reddit_credentials()
+reddit_creds = load_credentials(constants.REDDIT_CREDENTIALS)
 reddit_auth = praw.Reddit(
     client_id=reddit_creds['client_id'],
     client_secret=reddit_creds['client_secret'],
