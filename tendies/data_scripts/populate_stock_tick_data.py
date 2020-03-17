@@ -7,10 +7,14 @@ import sys
 import time
 import urllib
 
-sys.path.append('..')
-import tendies.constants as constants
-import tendies.db_helpers as db_helpers
-from tendies.load_credentials import load_credentials
+# sys.path.append('..')
+# import tendies.constants as constants
+# import tendies.db_helpers as db_helpers
+# from tendies.load_credentials import load_credentials
+
+import constants
+import db_helpers
+from load_credentials import load_credentials
 
 # TODO: Add error handling here in case of incorrect or missing stock symbol
 def load_tick_data(stock_symbols):
@@ -73,7 +77,8 @@ def upload_to_db(stock_tick_data):
 
     cur.close()
 
-
+# TODO: Refactor below to be in main method and execute only when script itself is called!
+'''
 tech_stocks = [
     'AAPL', 'GOOG', 'FB', 'MSFT', 'AMZN', 'TSLA', 'NFLX', 'AMD', 
     'CSCO', 'TWTR', 'SNAP', 'CRM', 'NVDA'
@@ -108,3 +113,4 @@ while not all_tick_data_uploaded:
     print('Insert 5 stocks\' tick data query duration in seconds: ', end_time - start_time)
 
     time.sleep(30)  # Done because AlphaVantage API only allows 5 requests per minute
+'''
