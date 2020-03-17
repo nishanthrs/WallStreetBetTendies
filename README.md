@@ -9,7 +9,7 @@ Parameters that user can specify: stock symbol, time range, subreddit
 1. Num of positive sentiment posts/comments vs. num of negative sentiment posts/comments vs. stock price movement (how does stock perform in following days/months after positive or negative comments, does prior drastic stock price chance affect subreddit's sentiment of stock)
 2. Most common keywords associated with stock during different volatility periods (most common keyword when stock was dropping rapidly)
 
-## Setup:
+## Database Setup:
 1. Sign in to VM (upload SSH public key to VM of local device if necessary).
 2. Install Postgres SQL on VM, start service, and add user with password.  
 Installing Postgres on Azure: https://docs.microsoft.com/en-us/azure/virtual-machines/linux/postgresql-install  
@@ -22,6 +22,9 @@ Install Postgres on Ubuntu Systems: https://www.techiediaries.com/install-postgr
 5. Navigate to pg_hba.conf and add 0.0.0.0/0 to allow access to all databases for all users with an encrypted password.  
 Steps 4 and 5: https://dba.stackexchange.com/questions/83984/connect-to-postgresql-server-fatal-no-pg-hba-conf-entry-for-host
 6. Restart Postgres service and add database settings in Django project under settings.py. 
+7. Follow instructions here to install and setup MongoDB:   
+https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/  
+https://www.how2shout.com/how-to/mongodb-installation-ubuntu-19-04-via-command-terminal.html
 
 ## Start Project on Server:
 ```python3 manage.py runserver <server_ip_addr>:8000```
