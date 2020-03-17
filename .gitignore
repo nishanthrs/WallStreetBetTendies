@@ -105,4 +105,4 @@ venv.bak/
 
 # credentials
 tendies/credentials/
-settings.py
+tendies/settings.py
