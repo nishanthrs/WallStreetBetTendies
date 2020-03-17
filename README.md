@@ -35,7 +35,7 @@ https://www.how2shout.com/how-to/mongodb-installation-ubuntu-19-04-via-command-t
 
 ## Endpoints:
 1. Stock Tick Data endpoint: <br>
-```http://172.22.158.49:8000/tick_data?stock_symbol=AAPL&start_date=2018-12-01&end_date=2019-12-01``` <br>
+```http://<server_ip:port>/tick_data?stock_symbol=AAPL&start_date=2018-12-01&end_date=2019-12-01``` <br>
 Example Output: <br>
 {
     "MSFT": [
@@ -51,7 +51,7 @@ Example Output: <br>
 }
 
 2. Moving Volatility endpoint: <br>
-```http://172.22.158.49:8000/moving_volatility?stock_symbol=AAPL&start_date=2018-10-01&end_date=2019-01-01``` <br>
+```http://<server_ip:port>/moving_volatility?stock_symbol=AAPL&start_date=2018-10-01&end_date=2019-01-01``` <br>
 Example Output: <br>
 {
     "status": 200,
@@ -84,7 +84,7 @@ Example Output: <br>
 }
 
 3. Subreddit Sentiment Disagreement endpoint: <br>
-```http://172.22.158.49:8000/subreddit_sentiment_disagreement?&subreddit_name=stocks&subreddit_name_2=investing&start_date=2018-12-01&end_date=2019-12-01``` <br>
+```http://<server_ip:port>/subreddit_sentiment_disagreement?&subreddit_name=stocks&subreddit_name_2=investing&start_date=2018-12-01&end_date=2019-12-01``` <br>
 Example Output: <br>
 {
     "status": 200,
@@ -107,12 +107,12 @@ Example Output: <br>
 }
 
 4. Sentiment Popularity Correlation endpoint: <br>
-```http://172.22.158.49:8000/sentiment_popularity_correlation?&subreddit_name=investing``` <br>
+```http://<server_ip:port>/sentiment_popularity_correlation?&subreddit_name=investing``` <br>
 Example Output: <br>
 
 
 5. Company Sentiment Count endpoint: <br>
-```http://172.22.158.49:8000/sentiment_count?&company=tesla&subreddit_name=stocks``` <br>
+```http://<server_ip:port>/sentiment_count?&company=tesla&subreddit_name=stocks``` <br>
 Example Output: <br>
 {
     "status": 200,
@@ -124,7 +124,7 @@ Example Output: <br>
 }
 
 6. Most Common Keywords Associated with Company: <br>
-```http://172.22.158.49:8000/company_keywords?&company=wework&subreddit_name=stocks```
+```http://<server_ip:port>/company_keywords?&company=wework&subreddit_name=stocks```
 Example Output: <br>
 {
     "status": 200,
@@ -151,7 +151,7 @@ Example Output: <br>
 }
 
 7. Delete Tick Data: <br>
-```http://172.22.158.49:8000/delete_tick_data?stock_symbol=AAPL&start_date=2018-12-01&end_date=2019-12-01``` <br>
+```http://<server_ip:port>/delete_tick_data?stock_symbol=AAPL&start_date=2018-12-01&end_date=2019-12-01``` <br>
 
 8. Insert Tick Data: <br>
-```http://172.22.158.49:8000/insert_tick_data?stock_symbol=AAPL```
+```http://<server_ip:port>/insert_tick_data?stock_symbol=AAPL```
