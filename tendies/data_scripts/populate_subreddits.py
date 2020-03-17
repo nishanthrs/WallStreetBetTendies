@@ -200,30 +200,27 @@ def upload_subreddit_posts_and_comments(reddit, subreddit_name, conn, post_keywo
     cur.close()
 
 
-reddit_creds = load_credentials(constants.REDDIT_CREDENTIALS)
-reddit_auth = praw.Reddit(
-    client_id=reddit_creds['client_id'],
-    client_secret=reddit_creds['client_secret'],
-    user_agent=reddit_creds['user_agent']
-)
-conn = db_helpers.connect_to_db()
-client = MongoClient("mongodb://localhost:27017")
-wsb_mongo_db = client['wsb_tendies']
-post_keywords_collection = wsb_mongo_db['post_keywords']
-comment_keywords_collection = wsb_mongo_db['comment_keywords']
-'''
-sample_post = {
-    "post_id": '6aeed2', 
-    "keywords": {'TSLA': 2, 'rise': 2, 'will': 1}
-}
-ret_val = post_keywords_collection.insert(sample_post)
-print('Inserted: ', ret_val)
-'''
+def main():
+    reddit_creds = load_credentials(constants.REDDIT_CREDENTIALS)
+    reddit_auth = praw.Reddit(
+        client_id=reddit_creds['client_id'],
+        client_secret=reddit_creds['client_secret'],
+        user_agent=reddit_creds['user_agent']
+    )
+    conn = db_helpers.connect_to_db()
+    client = MongoClient("mongodb://localhost:27017")
+    wsb_mongo_db = client['wsb_tendies']
+    post_keywords_collection = wsb_mongo_db['post_keywords']
+    comment_keywords_collection = wsb_mongo_db['comment_keywords']
 
-subreddits = ['investing', 'stocks', 'wallstreetbets', 'StockMarket', 'economy']
-for subreddit_name in subreddits:
-    start_time = time.time()
-    upload_subreddit_data(reddit_auth, subreddit_name, conn)
-    upload_subreddit_posts_and_comments(reddit_auth, subreddit_name, conn, post_keywords_collection, comment_keywords_collection)
-    end_time = time.time()
-    print('Time taken to upload all subreddit data for {}: {}', subreddit_name, str(end_time - start_time))
+    subreddits = ['investing', 'stocks', 'wallstreetbets', 'StockMarket', 'economy']
+    for subreddit_name in subreddits:
+        start_time = time.time()
+        upload_subreddit_data(reddit_auth, subreddit_name, conn)
+        upload_subreddit_posts_and_comments(reddit_auth, subreddit_name, conn, post_keywords_collection, comment_keywords_collection)
+        end_time = time.time()
+        print('Time taken to upload all subreddit data for {}: {}', subreddit_name, str(end_time - start_time))
+
+
+if __name__ == '__main__':
+    main()

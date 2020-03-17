@@ -77,40 +77,42 @@ def upload_to_db(stock_tick_data):
 
     cur.close()
 
-# TODO: Refactor below to be in main method and execute only when script itself is called!
-'''
-tech_stocks = [
-    'AAPL', 'GOOG', 'FB', 'MSFT', 'AMZN', 'TSLA', 'NFLX', 'AMD', 
-    'CSCO', 'TWTR', 'SNAP', 'CRM', 'NVDA'
-]
-media_stocks = ['DIS', 'ROKU', 'CMCSA', 'T']
-retail_stocks = ['TGT', 'COST', 'WMT']
-industrial_stocks = ['BA', 'SPCE', 'EADSY', 'CAT']
-oil_stocks = ['CHK', 'WPX', 'XOM', 'CVX', 'WTI']
-other_stocks = ['SPY', 'SPX']
-all_stocks = tech_stocks + media_stocks + retail_stocks + industrial_stocks + oil_stocks + other_stocks
+def main():
+    tech_stocks = [
+        'AAPL', 'GOOG', 'FB', 'MSFT', 'AMZN', 'TSLA', 'NFLX', 'AMD', 
+        'CSCO', 'TWTR', 'SNAP', 'CRM', 'NVDA'
+    ]
+    media_stocks = ['DIS', 'ROKU', 'CMCSA', 'T']
+    retail_stocks = ['TGT', 'COST', 'WMT']
+    industrial_stocks = ['BA', 'SPCE', 'EADSY', 'CAT']
+    oil_stocks = ['CHK', 'WPX', 'XOM', 'CVX', 'WTI']
+    other_stocks = ['SPY', 'SPX']
+    all_stocks = tech_stocks + media_stocks + retail_stocks + industrial_stocks + oil_stocks + other_stocks
 
-all_tick_data_uploaded = False
-start_idx = 0
-while not all_tick_data_uploaded:
-    if start_idx + 5 < len(all_stocks):
-        end_idx = start_idx + 5
-    else:
-        end_idx = len(all_stocks)
-        all_tick_data_uploaded = True
-    end_idx = start_idx + 5 if start_idx + 5 <= len(all_stocks) else len(all_stocks)
-    stocks = all_stocks[start_idx:end_idx]
-    tick_data = load_tick_data(stocks)
-    start_idx += 5
+    all_tick_data_uploaded = False
+    start_idx = 0
+    while not all_tick_data_uploaded:
+        if start_idx + 5 < len(all_stocks):
+            end_idx = start_idx + 5
+        else:
+            end_idx = len(all_stocks)
+            all_tick_data_uploaded = True
+        end_idx = start_idx + 5 if start_idx + 5 <= len(all_stocks) else len(all_stocks)
+        stocks = all_stocks[start_idx:end_idx]
+        tick_data = load_tick_data(stocks)
+        start_idx += 5
 
-    start_time = time.time()
-    try:
-        upload_to_db(tick_data)
-        print('Uploaded tick data of stocks: ', stocks)
-    except (Exception, psycopg2.DatabaseError) as error:
-        print('ERROR with uploading tick data: ', str(error))
-    end_time = time.time()
-    print('Insert 5 stocks\' tick data query duration in seconds: ', end_time - start_time)
+        start_time = time.time()
+        try:
+            upload_to_db(tick_data)
+            print('Uploaded tick data of stocks: ', stocks)
+        except (Exception, psycopg2.DatabaseError) as error:
+            print('ERROR with uploading tick data: ', str(error))
+        end_time = time.time()
+        print('Insert 5 stocks\' tick data query duration in seconds: ', end_time - start_time)
 
-    time.sleep(30)  # Done because AlphaVantage API only allows 5 requests per minute
-'''
+        time.sleep(30)  # Done because AlphaVantage API only allows 5 requests per minute
+
+
+if __name__ == '__main__':
+    main()
