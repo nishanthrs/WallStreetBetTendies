@@ -1,13 +1,26 @@
 version: '3'
 
 services:
-    db:
+    sql_db:
         image: postgres
         container_name: db01
         environment:
             - POSTGRES_USER='wsb_django_user'
             - POSTGRES_PASSWORD='411_wsb_tendies'
             - POSTGRES_DB='wsb_tendies'
+        ports:
+            - "5431:5432"
+
+    nosql_db:
+        image: mongo:latest
+        container_name: db02
+        environment:
+            - MONGO_INITDB_ROOT_USERNAME='wsb_django_user'
+            - MONGO_INITDB_ROOT_PASSWORD='411_wsb_tendies'
+            - MONGO_INITDB_DATABASE='wsb_tendies'
+        ports:
+            - "27016:27017"
+
     nginx:
         image: nginx:latest
         container_name: ng01
@@ -18,6 +31,7 @@ services:
             - ./config/nginx:/etc/nginx/conf.d
         depends_on:
             - web
+
     web:
         build: .
         container_name: w01
@@ -25,6 +39,7 @@ services:
         ports:
             - "3000:3000"
         depends_on:
-            - db
+            - sql_db
+            - nosql_db
         expose:
             - "3000"

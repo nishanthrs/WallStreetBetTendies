@@ -20,12 +20,16 @@ Install Postgres on Ubuntu Systems: https://www.techiediaries.com/install-postgr
 ```sudo -u postgres psql -c "SHOW data_directory";```
 4. Uncomment listen_address and port line in postgresql.conf. Update localhost to '*' and add 'host 0.0.0.0/0' to accept non-local connections.
 5. Navigate to pg_hba.conf and add 0.0.0.0/0 to allow access to all databases for all users with an encrypted password.  
-Steps 4 and 5: https://dba.stackexchange.com/questions/83984/connect-to-postgresql-server-fatal-no-pg-hba-conf-entry-for-host
-6. Restart Postgres service and add database settings in Django project under settings.py. 
-7. Follow instructions here to install and setup MongoDB:   
+Steps 4 and 5: https://dba.stackexchange.com/questions/83984/connect-to-postgresql-server-fatal-no-pg-hba-conf-entry-for-host  
+6. Do the same for /etc/mongod.conf (change bindIP to 0.0.0.0)  
+7. Restart Postgres service and add database settings in Django project under settings.py. 
+8. Follow instructions here to install and setup MongoDB:   
 https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/  
 https://www.how2shout.com/how-to/mongodb-installation-ubuntu-19-04-via-command-terminal.html
-8. Install Docker: https://docs.docker.com/install/linux/docker-ce/ubuntu/
+9. Install Docker: https://docs.docker.com/install/linux/docker-ce/ubuntu/  
+Docker help:  
+https://stackoverflow.com/questions/40114477/docker-compose-tutorial-not-working-python-cant-open-file-manage-py  https://github.com/ruddra/docker-django
+
 
 ## Start Project on Server:
 ```
