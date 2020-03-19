@@ -201,7 +201,7 @@ def main():
         user_agent=reddit_creds['user_agent']
     )
     conn = db_helpers.connect_to_db()
-    client = MongoClient("mongodb://localhost:27017")
+    client = MongoClient("mongodb://10.0.0.46:27017")
     wsb_mongo_db = client['wsb_tendies']
     post_keywords_collection = wsb_mongo_db['post_keywords']
     comment_keywords_collection = wsb_mongo_db['comment_keywords']

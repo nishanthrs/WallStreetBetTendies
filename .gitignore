@@ -106,3 +106,4 @@ venv.bak/
 # credentials
 tendies/credentials/
 tendies/settings.py
+TechLog.md
