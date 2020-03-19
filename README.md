@@ -25,9 +25,13 @@ Steps 4 and 5: https://dba.stackexchange.com/questions/83984/connect-to-postgres
 7. Follow instructions here to install and setup MongoDB:   
 https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/  
 https://www.how2shout.com/how-to/mongodb-installation-ubuntu-19-04-via-command-terminal.html
+8. Install Docker: https://docs.docker.com/install/linux/docker-ce/ubuntu/
 
 ## Start Project on Server:
-```python3 manage.py runserver <server_ip_addr>:8000```
+```
+export IP_ADDR=$(hostname -I | awk '{print $1}') && export APP_PORT=3000 && python3 manage.py runserver $IP_ADDR:$APP_PORT  
+python3 manage.py runserver <server_ip_addr>:8000
+```
 
 ## Open Jupyter notebook on remote server via local browser:
 1. Run ```ssh -L 8000:localhost:8888 user@ip_addr``` on client to connect to remote server.

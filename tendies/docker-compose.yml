@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+    db:
+        image: postgres
+        container_name: db01
+        environment:
+            - POSTGRES_USER='wsb_django_user'
+            - POSTGRES_PASSWORD='411_wsb_tendies'
+            - POSTGRES_DB='wsb_tendies'
+    nginx:
+        image: nginx:latest
+        container_name: ng01
+        ports:
+            - "10080:80"
+        volumes:
+            - ./src:/src
+            - ./config/nginx:/etc/nginx/conf.d
+        depends_on:
+            - web
+    web:
+        build: .
+        container_name: w01
+        command: bash -c "python3 manage.py makemigrations && python3 manage.py migrate && gunicorn tendies.wsgi -b 0.0.0.0:3000"
+        ports:
+            - "3000:3000"
+        depends_on:
+            - db
+        expose:
+            - "3000"
