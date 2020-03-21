@@ -33,8 +33,8 @@ https://stackoverflow.com/questions/40114477/docker-compose-tutorial-not-working
 
 ## Start Project on Server:
 ```
-export IP_ADDR=$(hostname -I | awk '{print $1}') && export APP_PORT=3000 && python3 manage.py runserver $IP_ADDR:$APP_PORT  
-python3 manage.py runserver <server_ip_addr>:8000
+export IP_ADDR=$(hostname -I | awk '{print $1}') && export APP_PORT=3000  
+python3 manage.py runserver $IP_ADDR:$APP_PORT  
 ```
 
 ## Open Jupyter notebook on remote server via local browser:

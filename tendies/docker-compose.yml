@@ -5,9 +5,8 @@ services:
         image: postgres
         container_name: db01
         environment:
-            - POSTGRES_USER='wsb_django_user'
-            - POSTGRES_PASSWORD='411_wsb_tendies'
-            - POSTGRES_DB='wsb_tendies'
+            - POSTGRES_PASSWORD=411_wsb_tendies
+            - POSTGRES_DB=wsb_tendies
         ports:
             - "5431:5432"
 

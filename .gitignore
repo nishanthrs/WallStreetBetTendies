@@ -107,3 +107,4 @@ venv.bak/
 tendies/credentials/
 tendies/settings.py
 TechLog.md
+tendies/TODO.txt
