@@ -14,7 +14,7 @@ def get_sentiment_count_res(company_name, subreddit):
     conn = db_helpers.connect_to_db()
     cur = conn.cursor()
 
-    client = pymongo.MongoClient("mongodb://10.0.0.46:27017")
+    client = pymongo.MongoClient("mongodb://10.0.0.2:27017")
     wsb_mongo_db = client['wsb_tendies']
     post_keywords_collection = wsb_mongo_db['post_keywords']
     # comment_keywords_collection = wsb_mongo_db['comment_keywords']
