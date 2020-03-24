@@ -14,9 +14,7 @@ services:
         image: mongo:latest
         container_name: db02
         environment:
-            - MONGO_INITDB_ROOT_USERNAME='mongo'
-            - MONGO_INITDB_ROOT_PASSWORD='411_wsb_tendies'
-            - MONGO_INITDB_DATABASE='wsb_tendies'
+            - MONGO_INITDB_DATABASE=wsb_tendies
         ports:
             - "27016:27017"
 
