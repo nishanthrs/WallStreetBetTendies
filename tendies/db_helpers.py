@@ -31,7 +31,7 @@ def connect_to_postgres():
 def connect_to_mongo():
     db_credentials = load_mongo_credentials()
     client = pymongo.MongoClient(
-        "mongodb://{}:{}".format(db_credentials['db_name'], db_credentials['db_port'])
+        "mongodb://{}:{}".format(db_credentials['db_host'], db_credentials['db_port'])
     )
     wsb_mongo_db = client['wsb_tendies']
     return wsb_mongo_db

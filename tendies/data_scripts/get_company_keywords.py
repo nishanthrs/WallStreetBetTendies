@@ -5,7 +5,7 @@ import requests
 import sys 
 
 sys.path.append('..')
-import tendies.db_helpers as db_helpers
+import db_helpers
 
 
 def get_company_most_common_keywords_res(company_name, subreddit, number_keyword=5):
