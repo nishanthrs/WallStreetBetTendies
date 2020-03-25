@@ -11,7 +11,7 @@ import db_helpers
 
 
 def get_sentiment_popularity_correlation_res(query_filename, subreddit_name):
-    conn = db_helpers.connect_to_db()
+    conn = db_helpers.connect_to_postgres()
     cur = conn.cursor()
 
     with open(query_filename, 'r') as q:

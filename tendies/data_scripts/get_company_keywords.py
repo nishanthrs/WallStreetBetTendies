@@ -2,11 +2,14 @@ import collections
 import datetime
 import pymongo
 import requests
+import sys 
+
+sys.path.append('..')
+import tendies.db_helpers as db_helpers
 
 
 def get_company_most_common_keywords_res(company_name, subreddit, number_keyword=5):
-    client = pymongo.MongoClient("mongodb://10.0.0.2:27017")
-    wsb_mongo_db = client['wsb_tendies']
+    wsb_mongo_db = db_helpers.connect_to_mongo()
     post_keywords_collection = wsb_mongo_db['post_keywords']
     comment_keywords_collection = wsb_mongo_db['comment_keywords']
     

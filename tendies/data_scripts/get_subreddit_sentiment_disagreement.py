@@ -11,7 +11,7 @@ import db_helpers
 
 
 def get_subreddit_sentiment_disagreement_res(query_filename, subreddit_name, subreddit_name_2, start_date, end_date):
-    conn = db_helpers.connect_to_db()
+    conn = db_helpers.connect_to_postgres()
     cur = conn.cursor()
 
     with open(query_filename, 'r') as q:

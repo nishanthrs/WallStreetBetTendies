@@ -43,7 +43,7 @@ def load_tick_data(stock_symbols):
 
 
 def upload_to_db(stock_tick_data):
-    conn = db_helpers.connect_to_db()
+    conn = db_helpers.connect_to_postgres()
     cur = conn.cursor()
 
     for stock in stock_tick_data:

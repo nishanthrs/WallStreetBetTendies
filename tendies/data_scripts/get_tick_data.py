@@ -9,7 +9,7 @@ sys.path.append('..')
 import db_helpers
 
 def get_tick_data_from_db(stock_symbol, start_date, end_date):
-    conn = db_helpers.connect_to_db()
+    conn = db_helpers.connect_to_postgres()
     cur = conn.cursor()
 
     get_stock_tick_data_query = (

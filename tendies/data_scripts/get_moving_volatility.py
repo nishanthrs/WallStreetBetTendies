@@ -11,7 +11,7 @@ import db_helpers
 
 
 def get_moving_volatility_res(stock_symbol, start_date, end_date):
-    conn = db_helpers.connect_to_db()
+    conn = db_helpers.connect_to_postgres()
     cur = conn.cursor()
 
     cur.callproc('calVolatility2', ['1999-11-01 00:00:00', '2001-12-07 00:00:00'])
