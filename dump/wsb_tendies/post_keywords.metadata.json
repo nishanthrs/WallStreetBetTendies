@@ -1,1 +1,0 @@
-{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"wsb_tendies.post_keywords"}],"uuid":"dbeee900019f4436a97019ec502434d5"}
