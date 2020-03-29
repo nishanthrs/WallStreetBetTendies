@@ -81,16 +81,16 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'wsb_tendies',
-		'USER': 'wsb_django_user',
+		'USER': 'postgres',
 		'PASSWORD': '411_wsb_tendies',
-		'HOST': '10.0.0.2'
+		'HOST': 'sql_db'
     },
 	'keywords': {
 		'ENGINE': 'djongo',
 		'NAME': 'wsb_tendies',
-		'USER': 'wsb_django_user',
+		'USER': 'mongo',
 		'PASSWORD': '411_wsb_tendies',
-		'HOST': '10.0.0.2'
+		'HOST': 'nosql_db'
 	}
 }
 

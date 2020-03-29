@@ -9,6 +9,8 @@ services:
             - POSTGRES_DB=wsb_tendies
         ports:
             - "5431:5432"
+        expose:
+            - "5432"
 
     nosql_db:
         image: mongo:latest
@@ -17,6 +19,8 @@ services:
             - MONGO_INITDB_DATABASE=wsb_tendies
         ports:
             - "27016:27017"
+        expose:
+            - "27017"
 
     nginx:
         image: nginx:latest
@@ -32,7 +36,7 @@ services:
     web:
         build: .
         container_name: w01
-        command: bash -c "python3 manage.py makemigrations && python3 manage.py migrate && gunicorn tendies.wsgi -b 0.0.0.0:3000"
+        command: bash -c "sleep 5; python3 manage.py makemigrations && python3 manage.py migrate && gunicorn tendies.wsgi -b 0.0.0.0:3000"
         ports:
             - "3000:3000"
         depends_on:
