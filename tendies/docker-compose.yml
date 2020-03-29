@@ -9,8 +9,6 @@ services:
             - POSTGRES_DB=wsb_tendies
         ports:
             - "5431:5432"
-        expose:
-            - "5432"
 
     nosql_db:
         image: mongo:latest
@@ -19,8 +17,6 @@ services:
             - MONGO_INITDB_DATABASE=wsb_tendies
         ports:
             - "27016:27017"
-        expose:
-            - "27017"
 
     nginx:
         image: nginx:latest
