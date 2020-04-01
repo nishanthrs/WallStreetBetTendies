@@ -2,7 +2,7 @@
 
 # Build and execute containers; output logs to temp directory
 echo "----------- BUILDING AND EXECUTING CONTAINERS ---------------"
-sudo `which docker-compose` down -v
+sudo `which docker-compose` down
 sudo `which docker-compose` up -d --build
 sudo `which docker-compose` logs web > /tmp/web_docker_output.log
 sudo `which docker-compose` logs sql_db > /tmp/sql_db_docker_output.log
