@@ -7,7 +7,7 @@ import requests
 import sys
 
 sys.path.append('..')
-import db_helpers
+import libs.db_helpers as db_helpers
 
 
 def get_sentiment_count_res(company_name, subreddit):

@@ -7,7 +7,7 @@ import sys
 import urllib
 
 sys.path.append('..')
-import db_helpers
+import libs.db_helpers as db_helpers
 
 
 def get_moving_volatility_res(stock_symbol, start_date, end_date):

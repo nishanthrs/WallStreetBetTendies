@@ -7,14 +7,16 @@ import sys
 import time
 import urllib
 
-# sys.path.append('..')
-# import tendies.constants as constants
-# import tendies.db_helpers as db_helpers
-# from tendies.load_credentials import load_credentials
+sys.path.append('..')
+import tendies.libs.constants as constants
+import tendies.libs.db_helpers as db_helpers
+from tendies.libs.load_credentials import load_credentials
 
+'''
 import constants
 import db_helpers
 from load_credentials import load_credentials
+'''
 
 # TODO: Add error handling here in case of incorrect or missing stock symbol
 def load_tick_data(stock_symbols):
@@ -42,7 +44,7 @@ def load_tick_data(stock_symbols):
     return symbols_tick_data
 
 
-def upload_to_db(stock_tick_data):
+def upload_tick_data_to_db(stock_tick_data):
     conn = db_helpers.connect_to_postgres()
     cur = conn.cursor()
 
@@ -77,20 +79,11 @@ def upload_to_db(stock_tick_data):
 
     cur.close()
 
-def main():
-    tech_stocks = [
-        'AAPL', 'GOOG', 'FB', 'MSFT', 'AMZN', 'TSLA', 'NFLX', 'AMD', 
-        'CSCO', 'TWTR', 'SNAP', 'CRM', 'NVDA'
-    ]
-    media_stocks = ['DIS', 'ROKU', 'CMCSA', 'T']
-    retail_stocks = ['TGT', 'COST', 'WMT']
-    industrial_stocks = ['BA', 'SPCE', 'EADSY', 'CAT']
-    oil_stocks = ['CHK', 'WPX', 'XOM', 'CVX', 'WTI']
-    other_stocks = ['SPY', 'SPX']
-    all_stocks = tech_stocks + media_stocks + retail_stocks + industrial_stocks + oil_stocks + other_stocks
 
+def upload_all_tick_data_to_db(all_stocks):
     all_tick_data_uploaded = False
     start_idx = 0
+
     while not all_tick_data_uploaded:
         if start_idx + 5 < len(all_stocks):
             end_idx = start_idx + 5
@@ -104,7 +97,7 @@ def main():
 
         start_time = time.time()
         try:
-            upload_to_db(tick_data)
+            upload_tick_data_to_db(tick_data)
             print('Uploaded tick data of stocks: ', stocks)
         except (Exception, psycopg2.DatabaseError) as error:
             print('ERROR with uploading tick data: ', str(error))
@@ -113,6 +106,24 @@ def main():
 
         time.sleep(30)  # Done because AlphaVantage API only allows 5 requests per minute
 
+def main():
+    tech_stocks = [
+        'AAPL', 'GOOG', 'FB', 'MSFT', 'AMZN', 'TSLA', 'NFLX', 'AMD', 
+        'CSCO', 'TWTR', 'SNAP', 'CRM', 'NVDA'
+    ]
+    media_stocks = ['DIS', 'ROKU', 'CMCSA', 'T']
+    retail_stocks = ['TGT', 'COST', 'WMT']
+    industrial_stocks = ['BA', 'SPCE', 'EADSY', 'CAT']
+    oil_stocks = ['CHK', 'WPX', 'XOM', 'CVX', 'WTI']
+    indices = [
+        'SPY', 'VTI', 'QQQ', 'EFA', 'AGG', 'GLD', 'SKYY', 'FDN',
+        'XLV', 'IBB', 'IHI', 'VNQ', 'XLF', 'VHT', 'XLE', 'VDC', 
+        'XLP', 'XLI'    
+    ]
+    all_stocks = tech_stocks + media_stocks + retail_stocks + industrial_stocks + oil_stocks + indices
+
+    upload_all_tick_data_to_db(indices)
+    
 
 if __name__ == '__main__':
     main()

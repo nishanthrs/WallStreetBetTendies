@@ -2,8 +2,9 @@ import json
 import psycopg2
 import pymongo
 
-import constants
-
+# Paths are FUCKED UP; run below import when running populate_db_scripts
+# import tendies.libs.constants as constants
+import libs.constants as constants
 
 def load_postgres_credentials():
     with open(constants.POSTGRES_CREDENTIALS) as f:

@@ -7,7 +7,7 @@ import sys
 import urllib
 
 sys.path.append('..')
-import db_helpers
+import libs.db_helpers as db_helpers
 
 
 def get_sentiment_popularity_correlation_res(query_filename, subreddit_name):
