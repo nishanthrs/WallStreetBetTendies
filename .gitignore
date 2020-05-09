@@ -106,7 +106,6 @@ venv.bak/
 # credentials
 tendies/credentials/
 tendies/settings.py
-TechLog.md
 tendies/TODO.txt
 mongo_dump/
 postgres_dump/
